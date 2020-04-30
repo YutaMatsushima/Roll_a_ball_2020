@@ -12,11 +12,13 @@ public class TargetGenerator : MonoBehaviour
     private float interval;
     //経過時間
     private float time = 0f;
+
+    private int count = 0;
  
     void Start()
     {
         //時間間隔を決定する
-        interval = 3f;
+        interval = 2f;
     }
  
     void Update()
@@ -25,12 +27,13 @@ public class TargetGenerator : MonoBehaviour
         time += Time.deltaTime;
  
         //経過時間が生成時間になったとき(生成時間より大きくなったとき)
-        if(time > interval)
+        if(time > interval && count < 10)
         {
-            //enemyをインスタンス化する(生成する)
+            //targetをインスタンス化する(生成する)
             GameObject target = Instantiate(targetPrefab);
-            //生成した敵の座標を決定する(現状X=0,Y=10,Z=20の位置に出力)
+            //生成したtargetの座標を決定する
             target.transform.position = GetRandomPosition();
+            count++;
             //経過時間を初期化して再度時間計測を始める
             time = 0f;
         }
