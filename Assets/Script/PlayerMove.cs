@@ -24,4 +24,14 @@ public class PlayerMove : MonoBehaviour
         // Ridigbody に力を与えて玉を動かす
         rb.AddForce(movement * speed);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // ぶつかったオブジェクトが収集アイテムだった場合
+        if (other.gameObject.CompareTag("target"))
+        {
+            // その収集アイテムを非表示にします
+            other.gameObject.SetActive(false);
+        }
+    }
 }
